@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Netlify Hello World</title>
+</head>
+<body>
+  <h1>Hello from Netlify Frontend</h1>
+  <button id="call">Call Backend</button>
+  <pre id="response"></pre>
+
+  <script>
+    document.getElementById('call').addEventListener('click', async () => {
+      try {
+        const res = await fetch('/.netlify/functions/hello');
+        const data = await res.json();
+        document.getElementById('response').textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        document.getElementById('response').textContent = 'Error: ' + err;
+      }
+    });
+  </script>
+</body>
+</html>
